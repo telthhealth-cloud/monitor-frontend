@@ -1,4 +1,6 @@
 import { useState } from "react";
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function fmt(date) {
@@ -300,8 +302,8 @@ export default function App() {
   async function runCheck() {
     setLoading(true);
     setError(null);
-    try {
-      const res = await fetch("/api/check");
+    try { 
+      const res = await fetch(`${API_BASE}/api/check`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
       setData(json);
